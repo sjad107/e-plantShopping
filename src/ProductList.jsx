@@ -316,7 +316,7 @@ function ProductList() {
           </div>
         </div>
         <div style={styleObjUl}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ marginInlineStart: "27%" }}>
             <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>
               Plants
             </a>
