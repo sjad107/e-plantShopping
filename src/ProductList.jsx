@@ -316,8 +316,7 @@ function ProductList() {
           </div>
         </div>
         <div style={styleObjUl}>
-          <div>
-            {" "}
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>
               Plants
             </a>
