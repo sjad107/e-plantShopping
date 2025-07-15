@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./ProductList.css";
 import CartItem from "./CartItem";
 import { addItem } from "./CartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function ProductList() {
   const [showCart, setShowCart] = useState(false);
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCart, setAddedToCart] = useState({});
+  const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const plantsArray = [
     {
@@ -293,6 +294,10 @@ function ProductList() {
       [plant.name]: true,
     }));
   };
+
+  const checkAddedToCart = (plantName) => {
+    return cart.some((item) => item.name === plantName);
+  };
   return (
     <div>
       <div className="navbar" style={styleObj}>
@@ -376,9 +381,11 @@ function ProductList() {
                     <button
                       className="product-button"
                       onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
-                      disabled
+                      disabled={checkAddedToCart(plant.name)} // Disable if already in cart or added
                     >
-                      Add to Cart
+                      {checkAddedToCart(plant.name)
+                        ? "Added to Cart"
+                        : "Add to Cart"}
                     </button>
                   </div>
                 ))}
